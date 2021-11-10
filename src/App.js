@@ -7,25 +7,40 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./Pages/Home/Home/Home";
 import Navigation from "./Pages/Shared/Navigation/Navigation";
-import Products from "./Pages/Home/Products/Products";
+import Products from "./Pages/Home/Products/Products/Products";
+import Login from "./Pages/Login/Login/Login";
+import Register from "./Pages/Register/Register";
+import AuthProvider from "./Context/AuthProvider/AuthProvider";
+import OrderNow from "./Pages/Home/OrderNow/OrderNow";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navigation></Navigation>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route  path="/home">
-            <Home />
-          </Route>
-          <Route  path="/products">
-            <Products />
-          </Route>
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Navigation></Navigation>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/home">
+              <Home />
+            </Route>
+            <Route exact path="/products">
+              <Products />
+            </Route>
+            <Route exact path="/products/order/:id">
+              <OrderNow />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/register">
+              <Register />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

@@ -1,11 +1,14 @@
 import React from "react";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 import "./Navigation.css";
 const Navigation = () => {
+  const { user, logOut } = useAuth();
+  console.log(user);
   return (
     <div>
-      <Navbar collapseOnSelect expand="lg" className='nav-bg'>
+      <Navbar collapseOnSelect expand="lg" className="nav-bg">
         <Container>
           <Navbar.Brand href="/home" className="d-inline w-75">
             <img
@@ -26,7 +29,7 @@ const Navigation = () => {
               <Nav.Link className="nav-link" href="#pricing">
                 Pricing
               </Nav.Link>
-              <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+              {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -34,7 +37,33 @@ const Navigation = () => {
                 <NavDropdown.Item href="#action/3.3">
                   Something
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
+              {!user?.email ? (
+                <>
+                  <Nav.Link
+                    className="nav-link login-btn"
+                    as={Link}
+                    to="/login"
+                  >
+                    <Button variant="success">Login</Button>
+                  </Nav.Link>
+                </>
+              ) : (
+                <>
+                  <span className="fw-bold d-flex justify-content-center align-items-center user-name text-info ">
+                    {user?.displayName}
+                  </span>
+                  <Nav.Link
+                    className="nav-link login-btn"
+                    as={Link}
+                    to="/login"
+                  >
+                    <Button onClick={logOut} variant="danger">
+                      Logout
+                    </Button>
+                  </Nav.Link>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

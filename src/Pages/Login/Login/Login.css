@@ -1,0 +1,22 @@
+.input-items {
+  height: 35px;
+}
+.label-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #000;
+  text-align: left;
+}
+.submit-btn {
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 10px;
+  background-color: #ccaf67;
+  border: none;
+  color: white;
+  border-radius: 5px;
+}
+
+.login-form{
+    width: 450px;
+}

@@ -1,5 +1,5 @@
 import firebaseConfig from "./firebase.config"
-import { initializeApp } from "firebase";
+import { initializeApp } from "firebase/app";
 
 
 const initializeFirebase = () => {
