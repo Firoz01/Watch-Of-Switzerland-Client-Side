@@ -2,17 +2,24 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Button } from "react-bootstrap";
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link , useLocation, useHistory} from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
     
-    const {error, isLoading, loginUser } = useAuth();
+  const { error, isLoading, loginUser, signInWithGoogle } = useAuth();
+  
+  const location = useLocation();
+  const history = useHistory();
 
     const onSubmit = (data) => {
-      loginUser(data.email, data.password);
+      loginUser(data.email, data.password, location, history);
       reset();
-    }
+  }
+  
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(location, history);
+  };
 
     return (
       <div className="border border-1 mx-auto mt-5 mb-5 login-form">
@@ -35,6 +42,20 @@ const Login = () => {
           />
           <input className="submit-btn" type="submit" />
         </form>
+
+        <div class="google-btn">
+          <div class="google-icon-wrapper">
+            <img
+              className="google-icon"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+              alt=""
+            />
+          </div>
+          <p class="btn-text">
+            <b onClick={handleGoogleSignIn}>Sign in with google</b>
+          </p>
+        </div>
+
         {isLoading && (
           <div className="spinner-border text-danger" role="status">
             <span className="visually-hidden">Loading...</span>

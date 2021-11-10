@@ -3,6 +3,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
@@ -16,8 +18,9 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const auth = getAuth();
+  const googleProvider = new GoogleAuthProvider();
 
-  const registerUser = (email, password, name) => {
+  const registerUser = (email, password, name, history) => {
     setIsLoading(true);
     setError("");
     createUserWithEmailAndPassword(auth, email, password)
@@ -31,6 +34,7 @@ const useFirebase = () => {
           .catch((error) => {
             setError(error.message);
           });
+        history.replace("/");
       })
       .catch((error) => {
         setError(error.message);
@@ -40,12 +44,13 @@ const useFirebase = () => {
       });
   };
 
-  const loginUser = (email, password) => {
+  const loginUser = (email, password, location, history) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        setError("");
-        setUser(res.user);
+       const destination = location?.state?.from || "/";
+        history.replace(destination);
+        setError('');
       })
       .catch((error) => {
         setError(error.message);
@@ -54,6 +59,22 @@ const useFirebase = () => {
         setIsLoading(false);
       });
   };
+
+  const signInWithGoogle = (location, history) => {
+    setIsLoading(true);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const destination = location?.state?.from || "/";
+        history.replace(destination);
+      setError("");
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -87,6 +108,7 @@ const useFirebase = () => {
     isLoading,
     registerUser,
     loginUser,
+    signInWithGoogle,
     logOut,
   };
 };

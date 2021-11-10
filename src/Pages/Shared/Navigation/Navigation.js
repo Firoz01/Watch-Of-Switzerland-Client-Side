@@ -29,27 +29,19 @@ const Navigation = () => {
               <Nav.Link className="nav-link" href="#pricing">
                 Pricing
               </Nav.Link>
-              {/* <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-              </NavDropdown> */}
-              {!user?.email ? (
+              {user?.email ? (
                 <>
-                  <Nav.Link
-                    className="nav-link login-btn"
-                    as={Link}
-                    to="/login"
-                  >
-                    <Button variant="success">Login</Button>
-                  </Nav.Link>
-                </>
-              ) : (
-                <>
+                  <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
+                    <NavDropdown.Item as={Link} to="/pay">
+                      Payment
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/myorders">
+                      My Orders
+                    </NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/review">
+                      Review
+                    </NavDropdown.Item>
+                  </NavDropdown>
                   <span className="fw-bold d-flex justify-content-center align-items-center user-name text-info ">
                     {user?.displayName}
                   </span>
@@ -61,6 +53,16 @@ const Navigation = () => {
                     <Button onClick={logOut} variant="danger">
                       Logout
                     </Button>
+                  </Nav.Link>
+                </>
+              ) : (
+                <>
+                  <Nav.Link
+                    className="nav-link login-btn"
+                    as={Link}
+                    to="/login"
+                  >
+                    <Button variant="success">Login</Button>
                   </Nav.Link>
                 </>
               )}

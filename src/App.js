@@ -12,6 +12,8 @@ import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Register/Register";
 import AuthProvider from "./Context/AuthProvider/AuthProvider";
 import OrderNow from "./Pages/Home/OrderNow/OrderNow";
+import Footer from "./Pages/Shared/Footer/Footer";
+import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -29,9 +31,9 @@ function App() {
             <Route exact path="/products">
               <Products />
             </Route>
-            <Route exact path="/products/order/:id">
+            <PrivateRoute exact path="/products/order/:id">
               <OrderNow />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/login">
               <Login />
             </Route>
@@ -39,6 +41,7 @@ function App() {
               <Register />
             </Route>
           </Switch>
+          <Footer></Footer>
         </Router>
       </AuthProvider>
     </div>

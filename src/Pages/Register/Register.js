@@ -2,16 +2,17 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "react-bootstrap";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 const Register = () => {
   const { register, handleSubmit, reset } = useForm();
   const { user, error, isLoading, registerUser } = useAuth();
+  const history = useHistory();
 
   const onSubmit = (data) => {
     if (data.password === data.confirmPassword) {
       const { name, email, password } = data;
-      registerUser(email, password, name);
+      registerUser(email, password, name, history);
       reset();
     } else {
       alert("Passwords do not match");
