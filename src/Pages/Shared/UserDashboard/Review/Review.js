@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './Review.css'
 import { FaStar } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
 
 const colors = {
   orange: "#FFBA5A",
@@ -10,7 +11,51 @@ const colors = {
 function Review() {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const stars = Array(5).fill(0);
+  const {user} = useAuth();
+
+  // useEffect(() => {
+  //   fetch('', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       rating: currentValue,
+  //     }),
+
+  //   })
+  // }, [])
+
+  
+  const handleOnBlur = (e) => {
+    setMessage(e.target.value);
+    e.target.value = "";
+  }
+
+  const handleReviewSubmit = () => {
+    const review = { message, rating: currentValue, user: user.displayName };
+    
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          setIsSubmitting(true);
+        }
+        
+      });
+
+  }
+
+
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -49,11 +94,24 @@ function Review() {
           );
         })}
       </div>
-      <textarea placeholder="What's your experience?" style={styles.textarea} />
+      <textarea
+        onBlur={handleOnBlur}
+        placeholder="What's your experience?"
+        style={styles.textarea}
+      />
 
-      <button className="btn btn-success mb-5" style={styles.button}>
+      <button
+        onClick={handleReviewSubmit}
+        className="btn btn-success mb-5"
+        style={styles.button}
+      >
         Submit
       </button>
+      {isSubmitting && (
+        <div class="alert alert-success" role="alert">
+          Submit Your Review Successfully! Thank You!
+        </div>
+      )}
     </div>
   );
 }

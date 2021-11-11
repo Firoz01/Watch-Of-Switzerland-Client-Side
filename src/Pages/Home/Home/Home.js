@@ -3,6 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import Banner from '../Banner/Banner';
 import Brands from '../Brands/Brands';
 import Product from '../Products/Product/Product';
+import Reviews from '../Reviews/Reviews';
 import VideoBanner from '../VideoBanner/VideoBanner';
 
 const Home = () => {
@@ -29,6 +30,7 @@ const Home = () => {
             ))}
           </Row>
         </Container>
+        <Reviews></Reviews>
       </div>
     );
 };

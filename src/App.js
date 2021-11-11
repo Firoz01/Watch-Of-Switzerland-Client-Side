@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // react-boostrap-import
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import "./App.css";
 import Home from "./Pages/Home/Home/Home";
 import Navigation from "./Pages/Shared/Navigation/Navigation";
