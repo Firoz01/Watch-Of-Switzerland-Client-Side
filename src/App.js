@@ -20,6 +20,9 @@ import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 import MyOrder from "./Pages/Shared/UserDashboard/MyOrder/MyOrder";
 import Payment from "./Pages/Shared/UserDashboard/Payment/Payment";
 import Review from "./Pages/Shared/UserDashboard/Review/Review";
+import MakeAdmin from "./Pages/Shared/AdminDashboard/MakeAdmin/MakeAdmin";
+import ManageAllOrder from "./Pages/Shared/AdminDashboard/ManageAllOrder/ManageAllOrder";
+import AddProduct from "./Pages/Shared/AdminDashboard/AddProduct/AddProduct";
 
 function App() {
   return (
@@ -48,6 +51,15 @@ function App() {
             </PrivateRoute>
             <PrivateRoute exact path="/review">
               <Review />
+            </PrivateRoute>
+            <PrivateRoute exact path="/makeadmin">
+              <MakeAdmin />
+            </PrivateRoute>
+            <PrivateRoute exact path="/manageorders">
+              <ManageAllOrder />
+            </PrivateRoute>
+            <PrivateRoute exact path="/addproduct">
+              <AddProduct />
             </PrivateRoute>
             <Route exact path="/login">
               <Login />

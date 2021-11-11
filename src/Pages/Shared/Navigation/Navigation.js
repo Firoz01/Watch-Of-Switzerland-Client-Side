@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import "./Navigation.css";
 const Navigation = () => {
-  const { user, logOut } = useAuth();
-  console.log(user);
+  const { user, logOut, admin} = useAuth();
+  console.log(admin);
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" className="nav-bg">
@@ -32,17 +32,33 @@ const Navigation = () => {
               {user?.email ? (
                 <>
                   <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
-                    <NavDropdown.Item as={Link} to="/payment">
-                      Payment
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/myorders">
-                      My Orders
-                    </NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="/review">
-                      Review
-                    </NavDropdown.Item>
+                    {!admin ? (
+                      <>
+                        <NavDropdown.Item as={Link} to="/payment">
+                          Payment
+                        </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/myorders">
+                          My Orders
+                        </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/review">
+                          Review
+                        </NavDropdown.Item>
+                      </>
+                    ) : (
+                      <>
+                        <NavDropdown.Item as={Link} to="/makeadmin">
+                          Make Admin
+                        </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/manageorders">
+                          Manage Orders
+                        </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/addproduct">
+                          Add Product
+                        </NavDropdown.Item>
+                      </>
+                    )}
                   </NavDropdown>
-                  <span className="fw-bold d-flex justify-content-center align-items-center user-name text-info ">
+                  <span className="fw-bold user-name text-info mx-auto d-flex justify-content-center align-items-center">
                     {user?.displayName}
                   </span>
                   <Nav.Link
