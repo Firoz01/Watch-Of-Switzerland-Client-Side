@@ -1,5 +1,9 @@
+.product-img{
+    height: 240px;
+}
+
 .product-btn{
-    padding: 10px 30px;
-    font-size: 16px;
+    padding: 5px 20px;
+    font-size: 14px;
     text-transform: uppercase;
 }

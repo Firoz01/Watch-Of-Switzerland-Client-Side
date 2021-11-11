@@ -14,6 +14,9 @@ import AuthProvider from "./Context/AuthProvider/AuthProvider";
 import OrderNow from "./Pages/Home/OrderNow/OrderNow";
 import Footer from "./Pages/Shared/Footer/Footer";
 import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
+import MyOrder from "./Pages/Shared/UserDashboard/MyOrder/MyOrder";
+import Payment from "./Pages/Shared/UserDashboard/Payment/Payment";
+import Review from "./Pages/Shared/UserDashboard/Review/Review";
 
 function App() {
   return (
@@ -33,6 +36,15 @@ function App() {
             </Route>
             <PrivateRoute exact path="/products/order/:id">
               <OrderNow />
+            </PrivateRoute>
+            <PrivateRoute exact path="/myorders">
+              <MyOrder />
+            </PrivateRoute>
+            <PrivateRoute exact path="/payment">
+              <Payment />
+            </PrivateRoute>
+            <PrivateRoute exact path="/review">
+              <Review />
             </PrivateRoute>
             <Route exact path="/login">
               <Login />

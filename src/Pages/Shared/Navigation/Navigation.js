@@ -32,7 +32,7 @@ const Navigation = () => {
               {user?.email ? (
                 <>
                   <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
-                    <NavDropdown.Item as={Link} to="/pay">
+                    <NavDropdown.Item as={Link} to="/payment">
                       Payment
                     </NavDropdown.Item>
                     <NavDropdown.Item as={Link} to="/myorders">

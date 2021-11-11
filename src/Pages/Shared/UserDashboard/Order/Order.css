@@ -1,0 +1,8 @@
+.status{
+    width: 100px;
+    height: 35px;
+    background-color: rgb(104, 231, 104);
+    color: green;
+    border-radius: 5px;
+    padding-top: 5px;
+}
