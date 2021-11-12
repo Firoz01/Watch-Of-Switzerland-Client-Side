@@ -82,6 +82,42 @@ const useSweetAlert = () => {
     });
   };
 
+
+  const sameEmail = () => {
+    swal({
+      title: "Same User",
+      text: "Email already exists to Admin",
+      icon: "warning",
+      button: "OK",
+    });
+  };
+
+  const emailNotFound = () => {
+    swal({
+      title: "User Not Found",
+      text: "With this Email User not found! Try With Another",
+      icon: "error",
+      button: "OK",
+    });
+  };
+
+  const congratulations = () => {
+    swal({
+      title: "Congratulations",
+      text: "Admin successfully registered",
+      icon: "success",
+      button: "OK",
+    });
+  };
+
+  const updateStatus = () => {
+    swal({
+      title: "Status Changed",
+      icon: "success",
+      button: "OK",
+    });
+  };
+
   return {
     createAccount,
     sucessfullyLogin,
@@ -90,8 +126,12 @@ const useSweetAlert = () => {
     confirmations,
     passwordDidntMatch,
     enterEmailPassword,
+    sameEmail,
+    emailNotFound,
+    congratulations,
     emptyFields,
     reviewSent,
+    updateStatus,
   };
 };
 

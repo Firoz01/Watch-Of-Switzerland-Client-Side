@@ -1,0 +1,37 @@
+
+.pending, .delete-btn{
+ width: 20px;
+}
+.pending   button{
+    border: none;
+    padding: 8px 20px;
+    background-color: rgba(236, 112, 112, 0.877);
+    color: red;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+
+
+.shipped{
+    width: 20px;
+}
+
+.shipped button{
+    border: none;
+    padding: 8px 20px;
+    background-color: rgb(92, 233, 87);
+    color: green;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+
+.delete-btn button{
+    border: none;
+    padding: 8px 20px;
+    background-color: rgba(233, 31, 31, 0.938);
+    color: white;
+    text-transform: capitalize;
+    font-size: 16px;
+}
