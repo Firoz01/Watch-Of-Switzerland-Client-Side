@@ -9,7 +9,7 @@ import useAlert from "../../../Hooks/useAlert";
 const ManageAllOrder = () => {
     const [orders, setOrders] = useState([]);
     
-     const { confirmations, updateStatus } = useAlert();
+     const { updateStatus } = useAlert();
      const [loading, setLoading] = useState(false);
 
   useEffect(() => {
