@@ -16,7 +16,7 @@ const MakeAdmin = () => {
 
     const handleOnClick = () => {
         const user = { email };
-        fetch("http://localhost:5000/users/admin", {
+        fetch("https://obscure-peak-86560.herokuapp.com/users/admin", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -24,15 +24,14 @@ const MakeAdmin = () => {
           body: JSON.stringify(user),
         })
           .then((res) => res.json())
-            .then((data) => {
-                if (data.modifiedCount === 0 && data.matchedCount === 1) {
-                    sameEmail();
-                } else if (data.matchedCount === 0) {
-                    emailNotFound();
-                }
-                else {
-                    congratulations();
-                }
+          .then((data) => {
+            if (data.modifiedCount === 0 && data.matchedCount === 1) {
+              sameEmail();
+            } else if (data.matchedCount === 0) {
+              emailNotFound();
+            } else {
+              congratulations();
+            }
           });
     };
 

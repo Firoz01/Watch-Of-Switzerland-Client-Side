@@ -38,7 +38,7 @@ function Review() {
   const handleReviewSubmit = () => {
     const review = { message, rating: currentValue, user: user.displayName };
     
-    fetch("http://localhost:5000/review", {
+    fetch("https://obscure-peak-86560.herokuapp.com/review", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,7 +50,6 @@ function Review() {
         if (data.acknowledged) {
           reviewSent();
         }
-        
       });
 
   }

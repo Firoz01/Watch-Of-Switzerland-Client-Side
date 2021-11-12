@@ -20,13 +20,13 @@ const OrderNow = () => {
   const { confirmations } = useAlert();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://obscure-peak-86560.herokuapp.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => setItem(data));
   }, [id]);
 
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/order", {
+    fetch("https://obscure-peak-86560.herokuapp.com/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,9 @@ const OrderNow = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => { confirmations(); });
+      .then((data) => {
+        confirmations();
+      });
 
     reset();
   };

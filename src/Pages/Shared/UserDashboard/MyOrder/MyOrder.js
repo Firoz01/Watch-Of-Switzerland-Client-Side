@@ -11,9 +11,9 @@ const MyOrder = () => {
     const [loading, setLoading] = useState(true);
     
     useEffect(() => {
-        fetch(`http://localhost:5000/orders/${user.email}`)
-            .then(res => res.json())
-            .then(data => setMyOrder(data), setLoading(false));
+        fetch(`https://obscure-peak-86560.herokuapp.com/orders/${user.email}`)
+          .then((res) => res.json())
+          .then((data) => setMyOrder(data), setLoading(false));
     }, [loading,user.email]);
 
 

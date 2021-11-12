@@ -13,7 +13,7 @@ const ManageAllOrder = () => {
      const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("https://obscure-peak-86560.herokuapp.com/orders")
       .then((res) => res.json())
       .then((data) => setOrders(data), setLoading(false));
   }, [loading]);
@@ -23,7 +23,7 @@ const ManageAllOrder = () => {
        
 
         
-             fetch(`http://localhost:5000/orders/status`, {
+             fetch(`https://obscure-peak-86560.herokuapp.com/orders/status`, {
                method: "PUT",
                headers: {
                  "Content-Type": "application/json",
@@ -57,7 +57,7 @@ const ManageAllOrder = () => {
          });
 
          const callDeleteApi = () => {
-           fetch(`http://localhost:5000/orders/${id}`, {
+           fetch(`https://obscure-peak-86560.herokuapp.com/orders/${id}`, {
              method: "DELETE",
              headers: {
                "Content-Type": "application/json",

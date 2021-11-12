@@ -29,7 +29,7 @@ const Order = (props) => {
    
    
     const callDeleteApi = () => {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://obscure-peak-86560.herokuapp.com/orders/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
