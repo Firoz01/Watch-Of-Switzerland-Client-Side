@@ -26,6 +26,8 @@ import MakeAdmin from "./Pages/Shared/AdminDashboard/MakeAdmin/MakeAdmin";
 import ManageAllOrder from "./Pages/Shared/AdminDashboard/ManageAllOrder/ManageAllOrder";
 import AddProduct from "./Pages/Shared/AdminDashboard/AddProduct/AddProduct";
 import SweetAlertProvider from "./Context/SweetAlertProvider/SweetAlertProvider";
+import NotFound from './Pages/NotFound/NotFound'
+
 
 function App() {
   return (
@@ -70,6 +72,9 @@ function App() {
               </Route>
               <Route exact path="/register">
                 <Register />
+              </Route>
+              <Route path='*'>
+                <NotFound></NotFound>
               </Route>
             </Switch>
             <Footer></Footer>
