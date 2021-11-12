@@ -4,18 +4,27 @@ import { Button } from "react-bootstrap";
 import "./Register.css";
 import { Link, useHistory } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import useAlert from "../Hooks/useAlert";
 const Register = () => {
   const { register, handleSubmit, reset } = useForm();
   const { isLoading, registerUser } = useAuth();
+  const { passwordDidntMatch, emptyFields } = useAlert();
   const history = useHistory();
 
   const onSubmit = (data) => {
-    if (data.password === data.confirmPassword) {
+    if (
+      data.name === "" ||
+      data.email === "" ||
+      data.password === "" ||
+      data.confirmPassword === ""
+    ) {
+      emptyFields();
+    } else if (data.password === data.confirmPassword) {
       const { name, email, password } = data;
       registerUser(email, password, name, history);
       reset();
     } else {
-      alert("Passwords do not match");
+      passwordDidntMatch();
     }
   };
 

@@ -1,11 +1,35 @@
 import React from "react";
 import { Container, Nav, Navbar, NavDropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
+import swal from "sweetalert";
+
 import useAuth from "../../Hooks/useAuth";
 import "./Navigation.css";
 const Navigation = () => {
   const { user, logOut, admin} = useAuth();
-  console.log(admin);
+  
+
+  const handleLogOut = () => {
+    swal({
+      title: "Are you sure?",
+      text: "You will be logged out",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        logOut();
+        swal("Successfully logged out", {
+          icon: "success",
+        });
+      } else {
+        swal("Order More Product");
+      }
+    });
+  }
+
+
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" className="nav-bg">
@@ -63,10 +87,8 @@ const Navigation = () => {
                   </span>
                   <Nav.Link
                     className="nav-link login-btn"
-                    as={Link}
-                    to="/login"
                   >
-                    <Button onClick={logOut} variant="danger">
+                    <Button onClick={handleLogOut} variant="danger">
                       Logout
                     </Button>
                   </Nav.Link>

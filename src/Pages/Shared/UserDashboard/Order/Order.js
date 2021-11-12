@@ -1,26 +1,49 @@
 import React from 'react';
 import './Order.css'
+
+import swal from "sweetalert";
+
+
 const Order = (props) => {
   const { _id, title, price, status } = props.order;
 
   
- const handleDeleteOrder = (id) => {
-   const proceed = window.confirm('Are you sure you want to delete this order?');
-   if (proceed) {
+  const handleDeleteOrder = (id) => {
+    
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        callDeleteApi();
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+   
+   
+    const callDeleteApi = () => {
       fetch(`http://localhost:5000/orders/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
-        }
+          "Content-Type": "application/json",
+        },
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data) {
-          props.deleteConfirmation();
-        }
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data) {
+            props.deleteConfirmation();
+          }
+        });
     }
-  }
+     
+  };
 
     return (
       <div className="col-sm-4 col-lg-4 my-5">

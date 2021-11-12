@@ -19,7 +19,7 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [admin, setAdmin] = useState(false);
-  const { sucessfullyLogin, sucessfullyLogout, loginError, createAccount } =
+  const { sucessfullyLogin, loginError, createAccount } =
     useAlert();
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
@@ -107,7 +107,6 @@ const useFirebase = () => {
 
   const logOut = () => {
     setIsLoading(true);
-    sucessfullyLogout();
     signOut(auth)
       .then(() => {
         setError("");
