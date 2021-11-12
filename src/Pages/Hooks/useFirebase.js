@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import initializeFirebase from "../Login/Firebase/firebase.init";
 import { useEffect, useState } from "react";
+import useAlert from "./useAlert";
 
 initializeFirebase();
 
@@ -18,6 +19,8 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [admin, setAdmin] = useState(false);
+  const { sucessfullyLogin, sucessfullyLogout, loginError, createAccount } =
+    useAlert();
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
 
@@ -43,6 +46,7 @@ const useFirebase = () => {
       })
       .finally(() => {
         setIsLoading(false);
+        createAccount();
       });
   };
 
@@ -55,10 +59,11 @@ const useFirebase = () => {
         setError('');
       })
       .catch((error) => {
-        setError(error.message);
+        loginError();
       })
       .finally(() => {
         setIsLoading(false);
+        sucessfullyLogin();
       });
   };
 
@@ -76,6 +81,7 @@ const useFirebase = () => {
       })
       .finally(() => {
         setIsLoading(false);
+        sucessfullyLogin();
       });
   }
 
@@ -101,6 +107,7 @@ const useFirebase = () => {
 
   const logOut = () => {
     setIsLoading(true);
+    sucessfullyLogout();
     signOut(auth)
       .then(() => {
         setError("");

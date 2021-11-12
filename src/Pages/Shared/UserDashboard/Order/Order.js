@@ -1,7 +1,27 @@
 import React from 'react';
 import './Order.css'
-const Order = ({ order }) => {
-    const { title, price, status} = order;
+const Order = (props) => {
+  const { _id, title, price, status } = props.order;
+
+  
+ const handleDeleteOrder = (id) => {
+   const proceed = window.confirm('Are you sure you want to delete this order?');
+   if (proceed) {
+      fetch(`http://localhost:5000/orders/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data) {
+          props.deleteConfirmation();
+        }
+      })
+    }
+  }
+
     return (
       <div className="col-sm-4 col-lg-4 my-5">
         <div class="card w-75 mx-auto">
@@ -15,7 +35,7 @@ const Order = ({ order }) => {
                 <span className="status-item">{status}</span>
               </div>
             </div>
-            <button type="button" class="btn btn-danger">
+            <button onClick={()=>{handleDeleteOrder(_id)}} type="button" class="btn btn-danger">
               Delete Order
             </button>
           </div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import './Review.css'
 import { FaStar } from "react-icons/fa";
 import useAuth from "../../../Hooks/useAuth";
+import useAlert from "../../../Hooks/useAlert";
 
 const colors = {
   orange: "#FFBA5A",
@@ -12,10 +13,9 @@ function Review() {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [message, setMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const stars = Array(5).fill(0);
   const {user} = useAuth();
-
+  const { reviewSent } = useAlert();
   // useEffect(() => {
   //   fetch('', {
   //     method: 'POST',
@@ -48,7 +48,7 @@ function Review() {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          setIsSubmitting(true);
+          reviewSent();
         }
         
       });
@@ -107,11 +107,6 @@ function Review() {
       >
         Submit
       </button>
-      {isSubmitting && (
-        <div class="alert alert-success" role="alert">
-          Submit Your Review Successfully! Thank You!
-        </div>
-      )}
     </div>
   );
 }

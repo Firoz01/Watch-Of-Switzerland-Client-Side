@@ -7,7 +7,8 @@ import useAuth from '../../Hooks/useAuth';
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
     
-  const { error, isLoading, loginUser, signInWithGoogle } = useAuth();
+  const { isLoading, loginUser, signInWithGoogle } = useAuth();
+  
   
   const location = useLocation();
   const history = useHistory();
@@ -20,6 +21,8 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle(location, history);
   };
+
+  
 
     return (
       <div className="border border-1 mx-auto mt-5 mb-5 login-form">
@@ -59,11 +62,6 @@ const Login = () => {
         {isLoading && (
           <div className="spinner-border text-danger" role="status">
             <span className="visually-hidden">Loading...</span>
-          </div>
-        )}
-        {error && (
-          <div className="alert alert-danger" role="alert">
-            {error}
           </div>
         )}
         <div className="mb-5">

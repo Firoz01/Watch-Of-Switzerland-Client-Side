@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
+
 import "./App.css";
 import Home from "./Pages/Home/Home/Home";
 import Navigation from "./Pages/Shared/Navigation/Navigation";
@@ -23,54 +25,57 @@ import Review from "./Pages/Shared/UserDashboard/Review/Review";
 import MakeAdmin from "./Pages/Shared/AdminDashboard/MakeAdmin/MakeAdmin";
 import ManageAllOrder from "./Pages/Shared/AdminDashboard/ManageAllOrder/ManageAllOrder";
 import AddProduct from "./Pages/Shared/AdminDashboard/AddProduct/AddProduct";
+import SweetAlertProvider from "./Context/SweetAlertProvider/SweetAlertProvider";
 
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
-        <Router>
-          <Navigation></Navigation>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/home">
-              <Home />
-            </Route>
-            <Route exact path="/products">
-              <Products />
-            </Route>
-            <PrivateRoute exact path="/products/order/:id">
-              <OrderNow />
-            </PrivateRoute>
-            <PrivateRoute exact path="/myorders">
-              <MyOrder />
-            </PrivateRoute>
-            <PrivateRoute exact path="/payment">
-              <Payment />
-            </PrivateRoute>
-            <PrivateRoute exact path="/review">
-              <Review />
-            </PrivateRoute>
-            <PrivateRoute exact path="/makeadmin">
-              <MakeAdmin />
-            </PrivateRoute>
-            <PrivateRoute exact path="/manageorders">
-              <ManageAllOrder />
-            </PrivateRoute>
-            <PrivateRoute exact path="/addproduct">
-              <AddProduct />
-            </PrivateRoute>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/register">
-              <Register />
-            </Route>
-          </Switch>
-          <Footer></Footer>
-        </Router>
-      </AuthProvider>
+      <SweetAlertProvider>
+        <AuthProvider>
+          <Router>
+            <Navigation></Navigation>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/home">
+                <Home />
+              </Route>
+              <Route exact path="/products">
+                <Products />
+              </Route>
+              <PrivateRoute exact path="/products/order/:id">
+                <OrderNow />
+              </PrivateRoute>
+              <PrivateRoute exact path="/myorders">
+                <MyOrder />
+              </PrivateRoute>
+              <PrivateRoute exact path="/payment">
+                <Payment />
+              </PrivateRoute>
+              <PrivateRoute exact path="/review">
+                <Review />
+              </PrivateRoute>
+              <PrivateRoute exact path="/makeadmin">
+                <MakeAdmin />
+              </PrivateRoute>
+              <PrivateRoute exact path="/manageorders">
+                <ManageAllOrder />
+              </PrivateRoute>
+              <PrivateRoute exact path="/addproduct">
+                <AddProduct />
+              </PrivateRoute>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/register">
+                <Register />
+              </Route>
+            </Switch>
+            <Footer></Footer>
+          </Router>
+        </AuthProvider>
+      </SweetAlertProvider>
     </div>
   );
 }

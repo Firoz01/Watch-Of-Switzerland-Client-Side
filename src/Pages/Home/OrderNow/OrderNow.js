@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import "./OrderNow.css";
 import { Col, Container, Row } from "react-bootstrap";
+import useAlert from "../../Hooks/useAlert";
 
 const OrderNow = () => {
   const [item, setItem] = useState({});
-  const [orderSuccess, setOrderSuccess] = useState(false);
   const {
     register,
     handleSubmit,
@@ -15,7 +15,9 @@ const OrderNow = () => {
     formState: { errors },
   } = useForm();
   const { id } = useParams();
-  const { user } = useAuth();
+  const { user, handleSweetAlert } = useAuth();
+
+  const { confirmations } = useAlert();
 
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
@@ -32,7 +34,7 @@ const OrderNow = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => setOrderSuccess(true));
+      .then((data) => { confirmations(); });
 
     reset();
   };
@@ -90,11 +92,6 @@ const OrderNow = () => {
               />
 
               <input className="bg-secondary text-white" type="submit" />
-              {orderSuccess && (
-                <div className="alert alert-success" role="alert">
-                  Order Successfully Placed
-                </div>
-              )}
             </form>
           </div>
         </Col>

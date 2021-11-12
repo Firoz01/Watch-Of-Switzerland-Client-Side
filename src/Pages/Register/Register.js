@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 const Register = () => {
   const { register, handleSubmit, reset } = useForm();
-  const { user, error, isLoading, registerUser } = useAuth();
+  const { isLoading, registerUser } = useAuth();
   const history = useHistory();
 
   const onSubmit = (data) => {
@@ -56,16 +56,6 @@ const Register = () => {
       {isLoading && (
         <div className="spinner-border text-danger" role="status">
           <span className="visually-hidden">Loading...</span>
-        </div>
-      )}
-      {user?.email && (
-        <div className="alert alert-success" role="alert">
-          Create Account Successfully
-        </div>
-      )}
-      {error && (
-        <div className="alert alert-danger" role="alert">
-          {error}
         </div>
       )}
       <div className="mb-5">
