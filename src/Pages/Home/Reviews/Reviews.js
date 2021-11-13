@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
+import './Reviews.css'
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+import ShowReview from "./ShowReview/ShowReview";
 
-const colors = {
-  orange: "#FFBA5A",
-};
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -15,31 +17,23 @@ const Reviews = () => {
       .then((data) => setReviews(data));
   }, []);
   return (
-      <div className="container my-5">
-          <h2 className='my-5 text-info'>Client Say About Us</h2>
-      <div className="row  gx-3 gy-2">
-          {reviews.map((review) => {
-            return (
-              <div className="col-6 col-md-3">
-                <div class="card">
-                  <h6 class="card-header d-flex justify-content-start text-secondary">
-                    {review.user}
-                  </h6>
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      {Array(review.rating)
-                        .fill()
-                        .map((_, i) => {
-                          return <FaStar color={colors.orange} />;
-                        })}
-                    </h5>
-                    <p class="card-text">{review.message}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+    <div className=" my-5 review-bg pb-5">
+      <h2 className="my-5 text-info">Client Say About Us</h2>
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={3}
+        centeredSlides
+        onSlideChange={() => console.log("")}
+        onSwiper={(swiper) => console.log('')}
+      >
+  
+        {reviews.map((review) => (
+          <SwiperSlide>
+            <ShowReview key={review._id} review={review}></ShowReview>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+  
     </div>
   );
 };

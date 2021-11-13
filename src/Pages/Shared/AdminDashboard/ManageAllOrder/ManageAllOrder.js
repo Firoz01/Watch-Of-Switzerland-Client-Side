@@ -9,9 +9,11 @@ import useAlert from "../../../Hooks/useAlert";
 const ManageAllOrder = () => {
     const [orders, setOrders] = useState([]);
     
-     const { updateStatus } = useAlert();
+     const { updateStatus} = useAlert();
      const [loading, setLoading] = useState(false);
 
+  
+  
   useEffect(() => {
     fetch("https://obscure-peak-86560.herokuapp.com/orders")
       .then((res) => res.json())
@@ -31,7 +33,10 @@ const ManageAllOrder = () => {
                body: JSON.stringify({ id: id, status: status }),
              })
                .then((res) => res.json())
-               .then((data) => setLoading(true), updateStatus());
+               .then((data) => {
+                 setLoading(true);
+                 updateStatus();
+               });
     }
 
     

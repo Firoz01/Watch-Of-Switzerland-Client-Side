@@ -14,7 +14,7 @@ const MyOrder = () => {
         fetch(`https://obscure-peak-86560.herokuapp.com/orders/${user.email}`)
           .then((res) => res.json())
           .then((data) => setMyOrder(data), setLoading(false));
-    }, [loading,user.email]);
+    }, [loading, user.email]);
 
 
     const deleteConfirmation = () => {
