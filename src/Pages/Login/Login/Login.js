@@ -10,7 +10,7 @@ const Login = () => {
 
   const { enterEmailPassword } = useAlert();
 
-  const { error, isLoading, loginUser, signInWithGoogle } = useAuth();
+  const { isLoading, loginUser, signInWithGoogle } = useAuth();
 
   const location = useLocation();
   const history = useHistory();
@@ -68,7 +68,6 @@ const Login = () => {
           <span className="visually-hidden">Loading...</span>
         </div>
       )}
-      {error && <p className="text-danger">{error}</p>}
       <div className="mb-5">
         <h3>Don't Have An Account</h3>
         <Link to="./register">

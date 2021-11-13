@@ -5,10 +5,10 @@ const ShowProducts = (props) => {
 
     return (
       <tr>
-        <td>{ props.index + 1}</td>
+        <td>{props.index + 1}</td>
         <td>{title}</td>
         <td>{price}</td>
-        <td>{image}</td>
+        <td className="diplay-none-mb">{image}</td>
         <td class="delete-btn">
           <button
             onClick={() => {

@@ -112,7 +112,7 @@ const [loading, setLoading] = useState(false);
             <th>No.</th>
             <th>Title</th>
             <th>price</th>
-            <th>Image Url</th>
+            <th className="diplay-none-mb">Image Url</th>
             <th>Remove</th>
           </tr>
         </thead>

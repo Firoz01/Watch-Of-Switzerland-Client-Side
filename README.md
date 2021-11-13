@@ -10,7 +10,7 @@ This project only focusing on Niche Watch eCommerce.
 
 ## Key Feature 
 
-The key feature of this noted below
+The key feature of this website noted below
 
 ### User Friendly Experience
 

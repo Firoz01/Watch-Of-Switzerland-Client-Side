@@ -19,8 +19,7 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [admin, setAdmin] = useState(false);
-  const { sucessfullyLogin, loginError, createAccount } =
-    useAlert();
+  const { sucessfullyLogin, loginError, createAccount } = useAlert();
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
 
@@ -31,14 +30,16 @@ const useFirebase = () => {
       .then((res) => {
         const newUser = { email, displayName: name };
         setUser(newUser);
-        saveUser(email, password, name, 'POST')
+        saveUser(email, password, name, "POST");
         updateProfile(auth.currentUser, {
-          displayName:  name ,
+          displayName: name,
         })
           .then(() => {})
           .catch((error) => {
             setError(error.message);
+            loginError();
           });
+        createAccount();
         history.replace("/");
       })
       .catch((error) => {
@@ -46,7 +47,6 @@ const useFirebase = () => {
       })
       .finally(() => {
         setIsLoading(false);
-        createAccount();
       });
   };
 
@@ -54,16 +54,17 @@ const useFirebase = () => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
-       const destination = location?.state?.from || "/";
+        sucessfullyLogin();
+        const destination = location?.state?.from || "/";
         history.replace(destination);
-        setError('');
+        setError("");
       })
       .catch((error) => {
+        setError(error.message);
         loginError();
       })
       .finally(() => {
         setIsLoading(false);
-        sucessfullyLogin();
       });
   };
 
@@ -71,19 +72,20 @@ const useFirebase = () => {
     setIsLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        saveUser(result.user.email, result.user.displayName, null, 'PUT')
+        saveUser(result.user.email, result.user.displayName, null, "PUT");
         const destination = location?.state?.from || "/";
         history.replace(destination);
-      setError("");
+        sucessfullyLogin();
+        setError("");
       })
       .catch((error) => {
         setError(error.message);
+        loginError();
       })
       .finally(() => {
         setIsLoading(false);
-        sucessfullyLogin();
       });
-  }
+  };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -97,13 +99,11 @@ const useFirebase = () => {
     return () => unSubscribe;
   }, [auth]);
 
-
-   useEffect(() => {
-     fetch(`https://obscure-peak-86560.herokuapp.com/user/${user.email}`)
-       .then((res) => res.json())
-       .then((data) => setAdmin(data.admin));
-   }, [user.email]);
-
+  useEffect(() => {
+    fetch(`https://obscure-peak-86560.herokuapp.com/user/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin));
+  }, [user.email]);
 
   const logOut = () => {
     setIsLoading(true);
@@ -119,18 +119,16 @@ const useFirebase = () => {
       });
   };
 
-
-   const saveUser = (email, displayName, password, method) => {
-     const user = { email, displayName, password };
-     fetch("https://obscure-peak-86560.herokuapp.com/user", {
-       method: method,
-       headers: {
-         "Content-Type": "application/json",
-       },
-       body: JSON.stringify(user),
-     }).then();
-   };
-
+  const saveUser = (email, displayName, password, method) => {
+    const user = { email, displayName, password };
+    fetch("https://obscure-peak-86560.herokuapp.com/user", {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    }).then();
+  };
 
   return {
     user,

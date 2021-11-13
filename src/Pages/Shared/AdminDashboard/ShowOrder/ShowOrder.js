@@ -10,15 +10,13 @@ const ShowOrder = (props) => {
     <tr>
       <td>{props.index + 1}</td>
       <td>{name}</td>
-      <td>{email}</td>
-      <td>{phone}</td>
+      <td className="diplay-none-mb">{email}</td>
+      <td className="diplay-none-mb">{phone}</td>
       <td>{title}</td>
-          <td className={
-            status === 'pending' ? 'pending' : 'shipped'
-      }>
+      <td className={status === "pending" ? "pending" : "shipped"}>
         <button
           onClick={() => {
-            props.handleOrderStatus(_id , status);
+            props.handleOrderStatus(_id, status);
           }}
         >
           {status}

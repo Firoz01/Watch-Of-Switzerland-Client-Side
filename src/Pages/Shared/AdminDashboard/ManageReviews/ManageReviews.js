@@ -60,13 +60,13 @@ const ManageReviews = () => {
     return (
       <Container>
         <h2 className='my-5'>Reviews From Our Client</h2>
-        <Table responsive bordered hover size="sm">
+        <Table  className='reviews-table' responsive bordered hover size="sm">
           <thead>
             <tr>
               <th>No.</th>
               <th>Title</th>
-              <th>price</th>
-              <th>Image Url</th>
+              <th>Price</th>
+              <th>Rating</th>
               <th>Remove</th>
             </tr>
           </thead>

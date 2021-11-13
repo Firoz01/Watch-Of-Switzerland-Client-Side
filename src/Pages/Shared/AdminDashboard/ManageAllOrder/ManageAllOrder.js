@@ -83,21 +83,27 @@ const ManageAllOrder = () => {
     
   return (
     <Container>
-      <Table bordered hover size="sm">
+      <Table className="reviews-table" bordered hover size="sm">
         <thead>
           <tr>
             <th>No.</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
+            <th className="diplay-none-mb">Email</th>
+            <th className="diplay-none-mb">Phone</th>
             <th>Product</th>
             <th>Status</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {orders.map((order , index) => (
-            <ShowOrder key={order._id} order={order} index={index} handleDeleteOrder={handleDeleteOrder} handleOrderStatus={handleOrderStatus}></ShowOrder>
+          {orders.map((order, index) => (
+            <ShowOrder
+              key={order._id}
+              order={order}
+              index={index}
+              handleDeleteOrder={handleDeleteOrder}
+              handleOrderStatus={handleOrderStatus}
+            ></ShowOrder>
           ))}
         </tbody>
       </Table>
