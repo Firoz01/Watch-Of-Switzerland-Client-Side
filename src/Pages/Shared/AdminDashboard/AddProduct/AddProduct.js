@@ -10,9 +10,9 @@ const [showProducts, setShowProducts] = useState([]);
 const [loading, setLoading] = useState(false); 
   
   useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .then(res => res.json())
-      .then(data => setShowProducts(data), setLoading(false));
+    fetch("https://obscure-peak-86560.herokuapp.com/products")
+      .then((res) => res.json())
+      .then((data) => setShowProducts(data), setLoading(false));
   },[loading]);
   
 
@@ -37,7 +37,7 @@ const [loading, setLoading] = useState(false);
      });
 
      const callDeleteApi = () => {
-       fetch(`http://localhost:5000/products/${id}`, {
+       fetch(`https://obscure-peak-86560.herokuapp.com/products/${id}`, {
          method: "DELETE",
          headers: {
            "Content-Type": "application/json",
@@ -58,7 +58,7 @@ const [loading, setLoading] = useState(false);
    const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/products", {
+    fetch("https://obscure-peak-86560.herokuapp.com/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,6 +71,7 @@ const [loading, setLoading] = useState(false);
         if (data.acknowledged === true) {
           swal("Product Added Successfully");
           setLoading(true);
+          reset();
         }
       });
    };

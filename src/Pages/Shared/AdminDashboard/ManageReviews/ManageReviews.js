@@ -9,12 +9,12 @@ const ManageReviews = () => {
     const [loading, setLoading] = useState(false); 
 
     useEffect(() => {
-        fetch("http://localhost:5000/reviews")
-            .then(res => res.json())
-        .then(data => {
+        fetch("https://obscure-peak-86560.herokuapp.com/reviews")
+          .then((res) => res.json())
+          .then((data) => {
             setShowReviews(data);
             setLoading(false);
-        })
+          });
     }, [loading]);
     
 
@@ -39,7 +39,7 @@ const ManageReviews = () => {
      });
 
      const callDeleteApi = () => {
-       fetch(`http://localhost:5000/reviews/${id}`, {
+       fetch(`https://obscure-peak-86560.herokuapp.com/reviews/${id}`, {
          method: "DELETE",
          headers: {
            "Content-Type": "application/json",
