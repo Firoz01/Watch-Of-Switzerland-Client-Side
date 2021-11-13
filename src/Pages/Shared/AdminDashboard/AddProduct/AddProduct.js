@@ -46,15 +46,12 @@ const [loading, setLoading] = useState(false);
          .then((res) => res.json())
          .then((data) => {
            if (data) {
-             deleteConfirmation();
+             setLoading(true);
            }
          });
      };
    };
 
-   const deleteConfirmation = () => {
-     setLoading(true);
-   };
 
 
 
@@ -119,9 +116,10 @@ const [loading, setLoading] = useState(false);
           </tr>
         </thead>
         <tbody>
-          {showProducts.map((product) => (
+          {showProducts.map((product, index) => (
             <ShowProducts
               key={product._id}
+              index={index}
               product={product}
               handleDeleteOrder={handleDeleteOrder}
             ></ShowProducts>

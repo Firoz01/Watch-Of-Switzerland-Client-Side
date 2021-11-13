@@ -4,11 +4,11 @@ const ShowOrder = (props) => {
     const {_id, name, email, phone, title, status } = props.order;
     
 
-  let count = 0;
+
 
   return (
     <tr>
-      <td>{count++}</td>
+      <td>{props.index + 1}</td>
       <td>{name}</td>
       <td>{email}</td>
       <td>{phone}</td>

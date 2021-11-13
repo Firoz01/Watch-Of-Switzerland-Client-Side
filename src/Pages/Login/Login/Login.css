@@ -66,6 +66,14 @@
   background: #1669f2;
 }
 
- 
+
+
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+
+@media only screen and (max-width: 600px) {
+  .login-form {
+    width: 100%;
+  }
+}

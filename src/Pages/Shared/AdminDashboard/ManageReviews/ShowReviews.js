@@ -1,14 +1,13 @@
 import React from 'react';
 
-const ShowProducts = (props) => {
-    const { _id, title, price, image } = props.product;
-
+const ShowReviews = (props) => {
+    const {_id, message, rating, user} = props.review;
     return (
       <tr>
-        <td>{ props.index + 1}</td>
-        <td>{title}</td>
-        <td>{price}</td>
-        <td>{image}</td>
+        <td>{props.index + 1}</td>
+        <td>{user}</td>
+        <td>{message}</td>
+        <td>{rating}</td>
         <td class="delete-btn">
           <button
             onClick={() => {
@@ -22,4 +21,4 @@ const ShowProducts = (props) => {
     );
 };
 
-export default ShowProducts;
+export default ShowReviews;

@@ -21,15 +21,15 @@ const Footer = () => {
       </div>
       <footer className="footer">
         <div className="container">
-          <div className="row">
-            <div className="col-sm-12 col-lg-3">
+          <div className="row footer-details">
+            <div className="col-4 col-lg-3">
               <h4>Customer Care</h4>
               <ul className="list-unstyled">
                 <li>
                   <a href="/contact">Contact Us</a>
                 </li>
                 <li>
-                  <a href="/contact">Delicery</a>
+                  <a href="/contact">Delivery</a>
                 </li>
                 <li>
                   <a href="/contact">Click & Collect</a>
@@ -37,13 +37,13 @@ const Footer = () => {
                 <li>
                   <a href="/contact">Returns & Refunds</a>
                 </li>
-                <li>
+                <li className="footer-display-none">
                   <a href="/contact">Payment Option</a>
                 </li>
-                <li>
+                <li className="footer-display-none">
                   <a href="/contact">Payment Security</a>
                 </li>
-                <li>
+                <li className="footer-display-none">
                   <a href="/contact">FAQs</a>
                 </li>
                 <li>
@@ -51,7 +51,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-sm-12 col-lg-3">
+            <div className="col-4 col-lg-3">
               <h4>Services & Repairs</h4>
               <ul className="list-unstyled">
                 <li>
@@ -68,7 +68,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-sm-12 col-lg-3">
+            <div className="col-4 col-lg-3">
               <h4>Yours Security</h4>
               <ul className="list-unstyled">
                 <li>
@@ -82,7 +82,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-sm-12 col-lg-3">
+            <div className="col-4 col-lg-3">
               <h4>Follow Us on</h4>
               <div class="social-links">
                 <NavLink to="#">
@@ -101,7 +101,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="container footer-description mt-4">
+        <div className="container footer-description footer-display-none mt-4">
           <p>© 2021 Watches of Switzerland</p>
           <small>
             Watches of Switzerland is a trading name of Watches of Switzerland

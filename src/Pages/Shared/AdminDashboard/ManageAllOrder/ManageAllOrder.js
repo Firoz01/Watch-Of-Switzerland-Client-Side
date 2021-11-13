@@ -96,8 +96,8 @@ const ManageAllOrder = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
-            <ShowOrder key={order._id} order={order} handleDeleteOrder={handleDeleteOrder} handleOrderStatus={handleOrderStatus}></ShowOrder>
+          {orders.map((order , index) => (
+            <ShowOrder key={order._id} order={order} index={index} handleDeleteOrder={handleDeleteOrder} handleOrderStatus={handleOrderStatus}></ShowOrder>
           ))}
         </tbody>
       </Table>

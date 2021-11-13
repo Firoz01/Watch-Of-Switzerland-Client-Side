@@ -27,6 +27,7 @@ import ManageAllOrder from "./Pages/Shared/AdminDashboard/ManageAllOrder/ManageA
 import AddProduct from "./Pages/Shared/AdminDashboard/AddProduct/AddProduct";
 import SweetAlertProvider from "./Context/SweetAlertProvider/SweetAlertProvider";
 import NotFound from './Pages/NotFound/NotFound'
+import ManageReviews from "./Pages/Shared/AdminDashboard/ManageReviews/ManageReviews";
 
 
 function App() {
@@ -64,6 +65,9 @@ function App() {
               <PrivateRoute exact path="/manageorders">
                 <ManageAllOrder />
               </PrivateRoute>
+              <PrivateRoute exact path="/managereviews">
+                <ManageReviews />
+              </PrivateRoute>
               <PrivateRoute exact path="/addproduct">
                 <AddProduct />
               </PrivateRoute>
@@ -73,7 +77,7 @@ function App() {
               <Route exact path="/register">
                 <Register />
               </Route>
-              <Route path='*'>
+              <Route path="*">
                 <NotFound></NotFound>
               </Route>
             </Switch>

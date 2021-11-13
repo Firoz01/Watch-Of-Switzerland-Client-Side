@@ -9,3 +9,9 @@
 .error{
     color: red;
 }
+
+@media only screen and (max-width: 600px) {
+    .booking-form input{
+        width: 100%;
+    }
+}

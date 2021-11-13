@@ -28,7 +28,7 @@ const Reviews = () => {
       >
   
         {reviews.map((review) => (
-          <SwiperSlide>
+          <SwiperSlide className='reviews-slide'>
             <ShowReview key={review._id} review={review}></ShowReview>
           </SwiperSlide>
         ))}

@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import "./OrderNow.css";
 import { Col, Container, Row } from "react-bootstrap";
 import useAlert from "../../Hooks/useAlert";
+import swal from "sweetalert";
 
 const OrderNow = () => {
   const [item, setItem] = useState({});
@@ -15,7 +16,7 @@ const OrderNow = () => {
     formState: { errors },
   } = useForm();
   const { id } = useParams();
-  const { user, handleSweetAlert } = useAuth();
+  const { user, admin } = useAuth();
 
   const { confirmations } = useAlert();
 
@@ -26,17 +27,29 @@ const OrderNow = () => {
   }, [id]);
 
   const onSubmit = (data) => {
-    fetch("https://obscure-peak-86560.herokuapp.com/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        confirmations();
-      });
+
+    if (admin) {
+       swal({
+         title: "Sorry",
+         text: "You are not allowed to order from this page",
+         icon: "error",
+         button: "Ok",
+       });
+    } else {
+      fetch("https://obscure-peak-86560.herokuapp.com/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          confirmations();
+        });
+    }
+
+    
 
     reset();
   };
@@ -93,7 +106,9 @@ const OrderNow = () => {
                 {...register("phone")}
               />
 
-              <input className="bg-secondary text-white" type="submit" />
+              
+                <input className="bg-secondary text-white" type="submit" />
+              
             </form>
           </div>
         </Col>

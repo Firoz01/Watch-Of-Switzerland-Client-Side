@@ -50,9 +50,6 @@ const Navigation = () => {
               <Nav.Link className="nav-link" as={Link} to="/products">
                 Products
               </Nav.Link>
-              <Nav.Link className="nav-link" href="#pricing">
-                Pricing
-              </Nav.Link>
               {user?.email ? (
                 <>
                   <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
@@ -75,6 +72,9 @@ const Navigation = () => {
                         </NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/manageorders">
                           Manage Orders
+                        </NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/managereviews">
+                          Manage Reviews
                         </NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/addproduct">
                           Add Product
