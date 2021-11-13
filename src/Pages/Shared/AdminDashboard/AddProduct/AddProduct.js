@@ -106,7 +106,7 @@ const [loading, setLoading] = useState(false);
       </div>
 
       <h2>Products List</h2>
-      <Table responsive bordered hover size="sm">
+      <Table className="reviews-table" bordered hover>
         <thead>
           <tr>
             <th>No.</th>
