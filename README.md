@@ -4,6 +4,8 @@
 
 Live Server link [Watch of Switzerland](https://watch-of-switzerland.web.app/).
 
+For Admin Route:- email: admin@test.com password: 123456
+
 # Description
 
 This project only focusing on Niche Watch eCommerce.
